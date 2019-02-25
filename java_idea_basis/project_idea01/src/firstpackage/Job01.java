@@ -162,7 +162,9 @@ public class Job01 {
             System.out.println();
         }
     }
-
+    public static void strui(){
+        System.out.print("在idea 中 push我的文件");
+    }
 }
 
 
