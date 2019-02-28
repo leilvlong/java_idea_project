@@ -5,19 +5,24 @@ import java.util.Scanner;
 public class Job01 {
     public static void main(String[] args) {
         // 正直角三角形
-        //triangle1();
+        triangle1();
 
         // 反直角三角形
-        //triangle2();
+        triangle2();
 
         //输出倒正直角三角形
-        //triangle3();
+        triangle3();
 
         //输出倒反直角三角形
-        //triangle4();
+        triangle4();
 
         // 输出等腰三角形
         triangle5();
+
+        // 输出倒立等腰三角形
+        triangle6();
+
+
     }
 
     public static void primeNumber() {
@@ -162,6 +167,34 @@ public class Job01 {
             System.out.println();
         }
     }
+    public static void triangle6(){
+        /* 倒立等腰三角形 逻辑完全相同
+           将控制输出的空格优先改为*优先  // 钻牛角尖了 这种图形输出任何时候都是空格优先
+           1. 输出控制行
+           2. 输出*
+           3.输出空格
+
+          // 总结到一个实用的应用点:
+            for循环控制格式化输出时
+            内循环计数与外循环计数做运算(比较)
+            达到变化的效果,控制输出格式(数据)
+            原理是因为内循环的计数器在外循环
+            走完一圈从新进入内循环计数器会被初始化
+            while循环同理
+        */
+
+        for(int x=5; x>0; x--){
+            // 输出空格改为累自增就行
+            for(int y=5; y-x>0; y--){
+                System.out.print(" ");
+            }
+            for(int z=0; z <x*2-1; z++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
     public static void strui(){
         System.out.print("在idea 中 push我的文件");
     }
