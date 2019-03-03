@@ -60,7 +60,10 @@ public class strOperation {
                 char cha = str.charAt(y);
                 charac.add(cha);
             }
-
+            /*
+                char 数组容器也可以 但我选择全部自己实现
+                char[] charac = strlist.get(x).toCharArray();
+             */
             /*
             上面已将将字符串处理为 ArrayList<Character>
             我只需要将里面的每个字符按照规则组合成字符串
@@ -79,6 +82,7 @@ public class strOperation {
                 int strLength = strin.length()+z;
                 int num = z;
                 String compareStr = "";
+                // 保证索引与需要组合的字符串长度能保持一致
                 while (num <strLength ) {
                     if ( charac.size()-num>0) {
                         compareStr = compareStr.concat(String.valueOf(charac.get(num)));
@@ -87,8 +91,12 @@ public class strOperation {
                     }
                     num++;
                 }
+                /*如果指定组合字符串与传入字符串相同 删除当前字符串
+                   因为删除ArrayList ArrayList.size会减少1
+                   下一个元素会占据当前索引跳过遍历 所以索引应当自减
+                 */
                 if (strin.equals(compareStr)) {
-                    strlist.remove(str);
+                    strlist.remove(strlist.get(x));
                     x--;
                 }
             }
