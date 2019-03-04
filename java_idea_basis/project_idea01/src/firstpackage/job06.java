@@ -94,26 +94,11 @@ import static java.math.BigDecimal.*;
 
 public class job06 {
     public static void main(String[] args) {
-        // 群主发红包
-        haremMaster haer = new haremMaster("小赵",100);
-        List<Double> redlist = haer.redEnvelope(100,20);
+        // 程序启动
+        Run runRedWars = new Run();
+        // 金额与红包个数
+        runRedWars.redWars(100,20);
 
-        // 创建一个装20个群员对象的数组
-        ChiguatheMasses[] chiguath = new ChiguatheMasses[21];
-        int x=0;
-        while(x<=chiguath.length-1){
-            String zhang = Integer.toString(x);
-            String zhang1 = "张";
-            chiguath[x] = new ChiguatheMasses(zhang1.concat(zhang),0);
-            x++;
-        }
-        int y = 0;
-        while(y<=chiguath.length-1){
-            chiguath[y].snatchRedEnvelope(redlist);
-            y++;
-        }
-
-        System.out.println(redlist.toString());
     }
 }
 
@@ -163,6 +148,8 @@ class User{
     }
 }
 
+
+// 群主 继承用户类
 class haremMaster extends User{
     public haremMaster(String name, double leftMoney) {
         super(name, leftMoney);
@@ -203,7 +190,7 @@ class haremMaster extends User{
              通过翻阅文档查资料  终于找到了解决浮点数运算的问题
               + - * / 分别对应为 add subtract multiply divide
               可根据选择对结果进行保留位数与四舍五入
-                +   MathContext.   根据精确要求自行选择
+                +      根据精确要求自行选择
                 -
             */
             BigDecimal big = new BigDecimal(money3);
@@ -221,7 +208,7 @@ class haremMaster extends User{
             num2 = num2.add(big, MathContext.DECIMAL32);
 
         }
-        // System.out.println(num2);
+        System.out.println(num2);
         return list2;
     }
 
@@ -240,8 +227,6 @@ class ChiguatheMasses extends User{
 
     public void snatchRedEnvelope(List<Double> list){
         // 产生随机下标索引
-
-
         // 一个预期之外的错误  我的错误写法导致的
         //int index = new Random().nextInt((list.size()-1)+1;
         if(list.size()!=0) {
@@ -254,6 +239,55 @@ class ChiguatheMasses extends User{
             System.out.println("手速真慢 红包没了");
         }
     }
+
+    public void showMasses(){
+        System.out.println(super.getName());
+        System.out.println(super.getLeftMoney());
+    }
 }
 
+class Run{
+    public static ChiguatheMasses[] makeMasses(){
+        // 创建群员对象
+        ChiguatheMasses[] chiguath = new ChiguatheMasses[21];
+        int x=0;
+        while(x<=chiguath.length-1){
+            String zhang = Integer.toString(x);
+            String zhang1 = "张";
+            chiguath[x] = new ChiguatheMasses(zhang1.concat(zhang),0);
+            x++;
+        }
+        return chiguath;
+    }
 
+    public void redWars(double money, int part) {
+        //  群主对象
+        haremMaster haer = new haremMaster("小赵", 100);
+
+        // 群主塞红包
+        List<Double> redlist = haer.redEnvelope(money, part);
+        // 得到群员
+        ChiguatheMasses[] chiguath = makeMasses();
+        if (haer.getLeftMoney()>=money) {
+            haer.setLeftMoney(haer.getLeftMoney()-money);
+            int y = 0;
+            while (y <= chiguath.length - 1) {
+                //群员抢红包
+                chiguath[y].snatchRedEnvelope(redlist);
+                y++;
+            }
+            for(int x=0; x<chiguath.length; x++){
+                if(chiguath[x].getLeftMoney()==0){
+                    System.out.println(chiguath[x].getName()+"是个穷逼");
+                }else {
+                    chiguath[x].show();
+                }
+            }
+            haer.show();
+        }else{
+            System.out.println("余额不足");
+        }
+    }
+
+
+}
