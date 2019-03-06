@@ -5,8 +5,8 @@ package firstpackage;
  * java接口丶继承丶多态
  * 1.多个接口中, 出现了同名的抽象方法, 只需要重写一次
  * 2.多个接口中, 出现了同名的默认方法, 必须重写这个同名的方法
- * 3.多个接口中,出现了方法参数不一的方法时可不重写(传入参数类型不同会区分) 与返回值无关
- * 4.静态方法不能被实现的类拿来实现
+ * 3.多个接口中,出现了方法参数不同的默认方法时可不重写(传入参数类型不同会区分) 与返回值无关
+ * 4.静态方法不能被实现的类拿来使用
  *     援引贴吧大神的解释:
  *         所有的抽象类，接口，普通类的static方法都不能被子类调用。
  *         凡是被static修饰的成员方法和成员变量都属于这个类的，
@@ -20,7 +20,7 @@ package firstpackage;
  *  7. 使用静态方法只需 class.method 或者 接口.method,类的静态变量只能在类中,
  *     接口中只有被final修饰的不可改变的常量,可以被继承者使用
  *  8. 接口多继承同名时只需重写默认方法 ,抽象方法不用重写
- *  9. 抽象方法同名且参数不同时实现类必须重写
+ *  9. 继承多个接口抽象方法同名且参数不同时实现类一一必须重写
  */
 
 class job10{
@@ -38,8 +38,10 @@ class job10{
         // 调用接口静态方法
         Port1.staticFun();
         Port1.staticFun1("1");
+
+        System.out.println("新的子类 新的接口实现________");
         Realize2 realize2 = new Realize2();
-        System.out.println("新的子类 新的接口继承________");
+        // 上面能用的下面都能用
         realize2.baseFun();
         realize2.abstractFun();
         realize2.defaultFun();
@@ -170,7 +172,7 @@ abstract class BaseClass{
 
 /**
  * 子类 继承基类
- * 继承接口123
+ * 实现接口123
  */
 class Realize1 extends BaseClass implements Port1, Port2, Port3{
     static String name;
@@ -201,7 +203,10 @@ class Realize1 extends BaseClass implements Port1, Port2, Port3{
     }
 }
 
-
+/*
+子类 继承BaseClass
+实现 Prot4
+ */
 class Realize2 extends BaseClass implements Ptot4{
 
     @Override
