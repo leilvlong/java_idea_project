@@ -17,7 +17,6 @@ public class job14 {
         inner2.InOutClass2();
         */
 
-/*
         OutClass out = new OutClass();
         // 外部类写的方法里new了内部类然后使用内部类的的方法
         // 而内部类的方法里又调用了外部类的方法
@@ -25,7 +24,6 @@ public class job14 {
 
         OutClass out2 = new OutClass(89,"老人");
         out2.newInner2();
-*/
 
 
     }
