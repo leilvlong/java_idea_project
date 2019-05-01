@@ -35,31 +35,27 @@ Comparator.sort
                 o1: ints[i]
                 o2: ints[y]
 
+总结:
 
+    o1 o2即:  object1 与 object2
+    意为两个用来操作的排序对象
+   以o1做被操作数 o2做操作数 其操作结果返回值若为:
+       正: o1在右 o2在左 交换位置  (即升序)
+       负; 所处位置不变
+   以o2做被操作数 o1做操作数 其操作结果返回值若为:
+       正: 所处位置不变
+       负: o2在左 o1在右 交换位置  (即降序)
 
 
   */
 public class job20 {
     public static void main(String[] args) {
         //fun();
-        //fun2();
-
-        int[] ints = {3,5};
-        for (int i = 0; i < ints.length; i++) {
-            for (int y = 0; y < i; y++) {
-                if(ints[i]>ints[y]){
-                    int anInt = ints[i];
-                    ints[i] = ints[y];
-                    ints[y]=anInt;
-                }
-            }
-        }
-        System.out.println(Arrays.toString(ints));
-
-
+        fun2();
     }
 
     public static void fun(){
+        System.out.println();
         ArrayList<Integer> ints =new ArrayList<>();
         ints.add(12);
         ints.add(7);
@@ -76,6 +72,7 @@ public class job20 {
     }
 
     public static void fun2(){
+        System.out.println();
         ArrayList<Studen> stus = new ArrayList<>();
         stus.add(new Studen("一",18,98));
         stus.add(new Studen("二",19,99));
@@ -90,6 +87,7 @@ public class job20 {
                 return -1;
             }else{
                 if(o2.age>o1.age){
+                    System.out.println();
                     return -1;
                 }else if(o2.age<o1.age){
                     return 1;
