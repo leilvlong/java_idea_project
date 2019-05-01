@@ -1,35 +1,62 @@
 package firstpackage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /*
 Comparator.sort
     自定义排序规则:
         参数 <E> o1  <E> o2
         逻辑处理:
-            二叉树原理
-            o2的第一个元素为有索引容器的第0个元素
-            o1 与 o2的计算值(比较) 若返回正数 则将  o1置于 o2 的右边
-                o2会随着计算比较的变化呈现树形比较变化
-            o1 与 o2的计算值(比较) 若返回负数 则将  o1置于 o2 的左边
-                o2会随着计算比较的变化呈现树形比较变化
-            o2 为二叉树上以确定的元素
+            以o1做被操作数 o2做操作数 其操作结果返回值若为:
+                正: o1在右 o2在左 交换位置  (即升序)
+                负; 所处位置不变
+            以o2做被操作数 o1做操作数 其操作结果返回值若为:
+                正: 所处位置不变
+                负: o2在左 o1在右 交换位置  (即降序)
+        以冒泡排序为例:
+            会将原容器中的每个元素与子容器中的每个元素遍历比较确定其所在原容器的位置
+            冒泡排序表达式:
+                int[] ints = {3,5};
+                for (int i = 0; i < ints.length; i++) {
+                    for (int y = 0; y < i; y++) {
+                        if(ints[i]>ints[y]){
+                            int anInt = ints[i];
+                            ints[i] = ints[y];
+                            ints[y]=anInt;
+                        }
+                    }
+                }
+                System.out.println(Arrays.toString(ints));
+            该计算公式中o1 o2 各自为:
+                o1: ints[i]
+                o2: ints[y]
 
-二叉树确保存入元素唯一:
-    根据排序规则进行存入(负左正右)
-    如果元素相同 返回0 则不存入
 
 
-涉及到使用比较进行排序时:
-    不要钻牛角尖
-     if o2>o1  返回正数  则降序  == if o1>o2 返回负数 则降序
-     if o2>o1  返回负数  则升序  == if o1>o2 返回正数 则升序
+
   */
 public class job20 {
     public static void main(String[] args) {
         //fun();
-        fun2();
+        //fun2();
+
+        int[] ints = {3,5};
+        for (int i = 0; i < ints.length; i++) {
+            for (int y = 0; y < i; y++) {
+                if(ints[i]>ints[y]){
+                    int anInt = ints[i];
+                    ints[i] = ints[y];
+                    ints[y]=anInt;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(ints));
+
+
     }
 
     public static void fun(){
